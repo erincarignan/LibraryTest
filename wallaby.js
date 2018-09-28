@@ -14,7 +14,7 @@ module.exports = function (wallaby) {
       "src/wallabyTest.js",
       "src/**/*spec.js",
       // Added for libraries
-      "projects/**/src/lib/**/*spec.js"
+      "projects/**/src/**/*spec.js"
     ],
 
     module: {
@@ -50,14 +50,11 @@ module.exports = function (wallaby) {
       modules: [
         path.join(wallaby.projectCacheDir, "src/app"),
         path.join(wallaby.projectCacheDir, "src"),
-        // Added for libraries
-        // path.join(wallaby.projectCacheDir, "projects/**/src/lib"),
-        path.join(wallaby.projectCacheDir),
         "node_modules"
       ],
-      // alias: {
-      //   testlib: path.join(wallaby.projectCacheDir, 'projects/**/src/lib')
-      // }
+      alias: {
+        testlib: path.join(wallaby.projectCacheDir, 'projects/testlib/src/public_api.js')
+      }
     },
     node: {
       fs: "empty",
@@ -79,11 +76,11 @@ module.exports = function (wallaby) {
       // Added for libraries
       {
         pattern:
-          "projects/**/src/lib/**/*.+(ts|css|less|scss|sass|styl|html|json|svg)",
+          "projects/**/src/**/*.+(ts|css|less|scss|sass|styl|html|json|svg)",
         load: false
       },
-      { pattern: "projects/**/src/lib/**/*.d.ts", ignore: true },
-      { pattern: "projects/**/src/lib/**/*spec.ts", ignore: true }
+      { pattern: "projects/**/src/**/*.d.ts", ignore: true },
+      { pattern: "projects/**/src/**/*spec.ts", ignore: true }
     ],
 
     tests: [
@@ -91,8 +88,8 @@ module.exports = function (wallaby) {
       { pattern: "src/**/*e2e-spec.ts", ignore: true },
 
       // Added for libraries
-      { pattern: "projects/**/src/lib/**/*spec.ts", load: false },
-      { pattern: "projects/**/src/lib/**/*e2e-spec.ts", ignore: true }
+      { pattern: "projects/**/src/**/*spec.ts", load: false },
+      { pattern: "projects/**/src/**/*e2e-spec.ts", ignore: true }
     ],
 
     testFramework: "jasmine",
